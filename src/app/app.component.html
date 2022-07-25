@@ -1,11 +1,11 @@
 <div class="container">
-  <br>
+  <br />
   <div class="row">
     <div class="col-sm-12">
       <h2>Your Shopping Bag</h2>
     </div>
   </div>
-  <br>
+  <br />
 
   <div class="row">
     <div class="col-sm-2">ITEM</div>
@@ -13,33 +13,83 @@
     <div class="col-sm-2">PRICE</div>
     <div class="col-sm-2">QUANTITY</div>
     <div class="col-sm-2">TOTAL</div>
-    <div class="col-sm-2"><h4>TOTAL SUMMARY: {{ ordItmService.getTotalSummary() | currency}}</h4></div>
-  </div>
-  <hr class="solid">
-<div *ngFor="let item of ordItmService.OrderItems; let i = index; ">
-  <div class="row">
     <div class="col-sm-2">
-      <img src="./assets/woman{{i+1}}.png" style="width: 160px;height: 200px;" >
+      <h6>ORDER SUMMARY: {{ ordItmService.getTotalSummary() | currency }}</h6>
     </div>
-    <div class="col-sm-2">
-       <div class="row" style="font-weight: bold">{{item.name}}</div>
-       <div class="row">Style:{{ item.style}}</div>
-       <div class="row">SKU:{{ item.sku}}</div>
-       <div class="row" *ngIf="item.mode==1">Color:{{ item.color}}</div>
-       <div class="row" *ngIf="item.mode==2">Color:<select (change)="onSelectColor($event.target.value,item)" [value]="item.color" ><option>red</option><option>blue</option> <option>green</option></select></div>
-
-       <div class="row" *ngIf="item.mode==1">Size:{{ item.size}}</div>
-       <div class="row" *ngIf="item.mode==2">Size:<select (change)="onSelectSize($event.target.value,item)" [value]="item.size" ><option>10</option><option>20</option> <option>30</option></select></div>
-
-       <div class="row" style="display: inline-block;margin-left: 0px;"><a href="#" *ngIf="item.mode==2" (click)="onUpdate(item.id)">Update</a><a href="#"  *ngIf="item.mode==1" (click)="onEdit(item.id)">Edit</a><a href="#" (click)="onRemove(item.id)" >Remove</a></div>
-    </div>
-    <div class="col-sm-2">{{item.price |currency}}</div>
-    <div class="col-sm-2"><select (change)="onSelectQuantity($event.target.value,item)" [selectedIndex]="item.quantity-1"><option>1</option><option>2</option> <option>3</option></select></div>
-    <div class="col-sm-2">{{(item.quantity * item.price) | currency}}</div>
-    <div class="col-sm-2"></div>
-
   </div>
-  <hr class="solid">
-</div>
+  <hr class="solid" />
+  <div *ngFor="let item of ordItmService.OrderItems; let i = index">
+    <div class="row">
+      <div class="col-sm-2">
+        <img
+          src="./assets/woman{{ i + 1 }}.png"
+          style="width: 160px; height: 200px"
+        />
+      </div>
+      <div class="col-sm-2">
+        <div class="row"  style="font-weight: bold;">
+          <div class="col-sm"> {{ item.name }}</div>
+          <div class="col-sm"></div>
+         </div>
+        <div class="row">
+          <div class="col-sm">Style:</div>
+          <div class="col-sm">{{ item.style }}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm">SKU:</div>
+          <div class="col-sm">{{ item.sku }}</div>
+        </div>
+        <div class="row" *ngIf="item.mode == 1">
+          <div class="col-sm">Color:</div>
+          <div class="col-sm">{{ item.color }}</div>
+        </div>
+        <div class="row" *ngIf="item.mode == 2">
+          Color:<select
+            (change)="onSelectColor($event.target.value, item)"
+            [value]="item.color"
+          >
+            <option>red</option>
+            <option>blue</option>
+            <option>green</option>
+          </select>
+        </div>
+
+        <div class="row" *ngIf="item.mode == 1">
+          <div class="col-sm">Size:</div>
+          <div class="col-sm">{{ item.size }}</div>
+        </div>
+        <div class="row" *ngIf="item.mode == 2">
+          Size:<select
+            (change)="onSelectSize($event.target.value, item)"
+            [value]="item.size"
+          >
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+          </select>
+        </div>
+
+        <div class="row" style="display: inline-block; text-align: left">
+          <a href="#" *ngIf="item.mode == 2" (click)="onUpdate(item.id)">Update</a>
+          <a href="#" *ngIf="item.mode == 1" (click)="onEdit(item.id)">Edit</a>
+          <a href="#" (click)="onRemove(item.id)">Remove</a>
+        </div>
+      </div>
+      <div class="col-sm-2">{{ item.price | currency }}</div>
+      <div class="col-sm-2">
+        <select
+          (change)="onSelectQuantity($event.target.value, item)"
+          [value]="item.quantity"
+        >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </div>
+      <div class="col-sm-2">{{ item.quantity * item.price | currency }}</div>
+      <div class="col-sm-2"></div>
+    </div>
+    <hr class="solid" />
+  </div>
 </div>
 <router-outlet></router-outlet>

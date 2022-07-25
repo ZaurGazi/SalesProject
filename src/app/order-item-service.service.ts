@@ -8,9 +8,9 @@ export class OrderItemServiceService {
   OrderItems: OrderItem[] = [
     {
       id: 1,
-      name: 'Woman1',
+      name: 'Model 1',
       color: 'red',
-      price: 2,
+      price: 20,
       quantity: 1,
       size: 20,
       sku: 'sku1',
@@ -19,9 +19,9 @@ export class OrderItemServiceService {
     },
     {
       id: 2,
-      name: 'Woman2',
+      name: 'Model 2',
       color: 'blue',
-      price: 3,
+      price: 30,
       quantity: 2,
       size: 10,
       sku: 'sku2',
@@ -30,9 +30,9 @@ export class OrderItemServiceService {
     },
     {
       id: 3,
-      name: 'Woman3',
+      name: 'Model 3',
       color: 'red',
-      price: 3,
+      price: 40,
       quantity: 3,
       size: 10,
       sku: 'sku3',
