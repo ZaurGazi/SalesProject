@@ -15,43 +15,42 @@ export class OrderItemServiceService {
       size: 20,
       sku: 'sku1',
       style: 'style1',
-      mode:1
+      mode: 1,
     },
     {
       id: 2,
       name: 'Model 2',
       color: 'blue',
-      price: 30,
+      price: 30.60,
       quantity: 2,
       size: 10,
       sku: 'sku2',
       style: 'style2',
-      mode:1
+      mode: 1,
     },
     {
       id: 3,
       name: 'Model 3',
       color: 'red',
-      price: 40,
+      price: 40.45,
       quantity: 3,
       size: 10,
       sku: 'sku3',
       style: 'style3',
-      mode:1
+      mode: 1,
     },
   ];
   constructor() {}
 
   public removeOrderItem(id: number) {
-    this.OrderItems.forEach( (item, index) => {
-      if(item.id === id) this.OrderItems.splice(index,1);
+    this.OrderItems.forEach((item, index) => {
+      if (item.id === id) this.OrderItems.splice(index, 1);
     });
   }
-  public getTotalSummary():number
-  {
-    let sum=0;
-    this.OrderItems.forEach( (item, index) => {
-      sum+=item.quantity*item.price;
+  public getTotalSummary(): number {
+    let sum = 0;
+    this.OrderItems.forEach((item, index) => {
+      sum += item.quantity * item.price;
     });
     return sum;
   }
