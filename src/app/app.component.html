@@ -17,8 +17,30 @@
       <h6>ORDER SUMMARY: {{ ordItmService.getTotalSummary() | currency }}</h6>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-2">Filter Row</div>
+    <div class="col-sm-2">          Color:<select
+      (change)="onFilterSelectColor($event.target.value)"
+    ><option>all</option>
+      <option>red</option>
+      <option>blue</option>
+      <option>green</option>
+    </select></div>
+    <div class="col-sm-2">          Size:<select
+      (change)="onFilterSelectSize($event.target.value)"
+    ><option>all</option>
+      <option>10</option>
+      <option>20</option>
+      <option>30</option>
+    </select></div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-2">
+
+    </div>
+  </div>
   <hr class="solid" />
-  <div *ngFor="let item of ordItmService.OrderItems; let i = index">
+  <div *ngFor="let item of ordItmService.filterByColumnOrderItem(filColor,filSize); let i = index">
     <div class="row">
       <div class="col-sm-2">
         <img

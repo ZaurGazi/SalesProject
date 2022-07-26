@@ -47,6 +47,9 @@ export class OrderItemServiceService {
       if (item.id === id) this.OrderItems.splice(index, 1);
     });
   }
+  public filterByColumnOrderItem(color: string, size):OrderItem[] {
+    return this.OrderItems.filter(f=>f.color==(color=='all'?f.color:color) && f.size== (size=='all'?f.size:size));
+  }
   public getTotalSummary(): number {
     let sum = 0;
     this.OrderItems.forEach((item, index) => {
