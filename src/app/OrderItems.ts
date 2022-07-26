@@ -1,13 +1,13 @@
 export class OrderItem
 {
-  id:number;
- name:string;
- style:string;
- sku:string;
- color:string;
- size:number;
- quantity:number;
- price:number;
- mode:number;
+    public orderId: number;
+    public itemId: number;
+    public itemName: string;
+    public itemPrice: number;
+    public quantity: number;
+    public size: number;
+    public color: string;
+    public itemCategory: string;
+    public mode:number;
 }
 

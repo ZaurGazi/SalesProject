@@ -6,17 +6,6 @@
     </div>
   </div>
   <br />
-
-  <div class="row">
-    <div class="col-sm-2">ITEM</div>
-    <div class="col-sm-2"></div>
-    <div class="col-sm-2">PRICE</div>
-    <div class="col-sm-2">QUANTITY</div>
-    <div class="col-sm-2">TOTAL</div>
-    <div class="col-sm-2">
-      <h6>ORDER SUMMARY: {{ ordItmService.getTotalSummary() | currency }}</h6>
-    </div>
-  </div>
   <div class="row">
     <div class="col-sm-2">Filter Row</div>
     <div class="col-sm-2">          Color:<select
@@ -40,7 +29,19 @@
     </div>
   </div>
   <hr class="solid" />
-  <div *ngFor="let item of ordItmService.filterByColumnOrderItem(filColor,filSize); let i = index">
+  <div class="row">
+    <div class="col-sm-2">ITEM</div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-2">PRICE</div>
+    <div class="col-sm-2">QUANTITY</div>
+    <div class="col-sm-2">TOTAL</div>
+    <div class="col-sm-2">
+      <h6>ORDER SUMMARY: {{ getTotalSummary() | currency }}</h6>
+    </div>
+  </div>
+
+  <hr class="solid" />
+  <div *ngFor="let item of orderItems ; let i = index">
     <div class="row">
       <div class="col-sm-2">
         <img
@@ -50,17 +51,10 @@
       </div>
       <div class="col-sm-2" style="position: relative;">
         <div class="row"  style="font-weight: bold;">
-          <div class="col-sm"> {{ item.name }}</div>
+          <div class="col-sm"> {{ item.itemName }}</div>
           <div class="col-sm"></div>
          </div>
-        <div class="row">
-          <div class="col-sm">Style:</div>
-          <div class="col-sm">{{ item.style }}</div>
-        </div>
-        <div class="row">
-          <div class="col-sm">SKU:</div>
-          <div class="col-sm">{{ item.sku }}</div>
-        </div>
+
         <div class="row" *ngIf="item.mode == 1">
           <div class="col-sm">Color:</div>
           <div class="col-sm">{{ item.color }}</div>
@@ -92,12 +86,12 @@
         </div>
 
         <div class="row" style="display: inline-block; position: absolute;bottom: 0; ">
-          <a href="#" *ngIf="item.mode == 2" (click)="onUpdate(item.id)">Update</a>
-          <a href="#" *ngIf="item.mode == 1" (click)="onEdit(item.id)">Edit</a>
-          <a href="#" (click)="onRemove(item.id)">Remove</a>
+          <a href="#" *ngIf="item.mode == 2" (click)="onUpdate(item)">Update</a>
+          <a href="#" *ngIf="item.mode == 1" (click)="onEdit(item.itemId)">Edit</a>
+          <a href="#" (click)="onRemove(+item.itemId)">Remove</a>
         </div>
       </div>
-      <div class="col-sm-2">{{ item.price | currency }}</div>
+      <div class="col-sm-2">{{ item.itemPrice | currency }}</div>
       <div class="col-sm-2">
         <select
           (change)="onSelectQuantity($event.target.value, item)"
@@ -108,7 +102,7 @@
           <option>3</option>
         </select>
       </div>
-      <div class="col-sm-2">{{ item.quantity * item.price | currency }}</div>
+      <div class="col-sm-2">{{ (item.quantity * item.itemPrice) | currency }}</div>
       <div class="col-sm-2"></div>
     </div>
     <hr class="solid" />
